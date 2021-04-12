@@ -25,9 +25,9 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
+        String path = getServletContext().getRealPath("/WEB-INF");
         AccountService as = new AccountService();
-        User user = as.login(email, password);
+        User user = as.login(email, password, path);
         
         if (user == null) {
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
